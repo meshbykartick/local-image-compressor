@@ -1,4 +1,4 @@
-# 🖼️ Local Image Compressor
+# 🖼️ Local Image Compressor, [🔗See the User Manual](https://meshbykartick.github.io/local-image-compressor/manual.html)
 
 A lightweight **Flask + JavaScript web app** that lets you **compress images locally** on your own computer.  
 No data leaves your system — all processing happens on your machine for maximum **speed**, **privacy**, and **control**.
