@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Local Image Compressor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top left, #0f172a, #1e293b);
+      color: #f8fafc;
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+      backdrop-filter: blur(10px);
+    }
+    h1, h2, h3 {
+      color: #38bdf8;
+      margin-bottom: 15px;
+    }
+    h1 {
+      font-size: 2.4em;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    p, li, pre, code {
+      font-size: 1.05em;
+    }
+    ul {
+      margin-left: 25px;
+      margin-bottom: 20px;
+    }
+    pre {
+      position: relative;
+      background: #0f172a;
+      color: #f1f5f9;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 15px 0;
+    }
+    pre button.copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #38bdf8;
+      border: none;
+      color: #0f172a;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85em;
+      transition: all 0.2s ease-in-out;
+    }
+    pre button.copy-btn:hover {
+      background: #0ea5e9;
+      transform: scale(1.05);
+    }
+    code { color: #fbbf24; }
+    hr { border: none; border-top: 1px solid rgba(255,255,255,0.1); margin: 25px 0; }
+    a { color: #38bdf8; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #94a3b8;
+    }
+    .highlight {
+      background: linear-gradient(90deg, #0ea5e9, #06b6d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🖼️ Local Image Compressor</h1>
+    <p>A lightweight <span class="highlight">Flask + JavaScript web app</span> that lets you <strong>compress images locally</strong> on your own computer.<br>
+    No data leaves your system — all processing happens on your machine for maximum <strong>speed</strong>, <strong>privacy</strong>, and <strong>control</strong>.</p>
+
+    <div class="section">
+      <h2>🚀 Features</h2>
+      <ul>
+        <li>✅ Simple and responsive web interface</li>
+        <li>⚡ Fast JPEG compression using Pillow (Python)</li>
+        <li>🔒 100% local processing — no internet required</li>
+        <li>🧠 Easy to set up and run</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>🧩 Tech Stack</h2>
+      <ul>
+        <li><strong>Frontend:</strong> HTML, CSS, JavaScript</li>
+        <li><strong>Backend:</strong> Python (Flask)</li>
+        <li><strong>Compression Engine:</strong> Pillow (PIL)</li>
+        <li><strong>Deployment (optional):</strong> GitHub Pages + ngrok</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>📂 Folder Structure</h2>
+      <pre><button class="copy-btn">Copy</button><code>local-image-compressor
+|
+|--static
+|    |--index.html
+|--requirements.txt
+|--server.py</code></pre>
+    </div>
+
+    <div class="section">
+      <h2>⚙️ Installation & Setup</h2>
+      <h3>Clone the Repository</h3>
+      <pre><button class="copy-btn">Copy</button><code>git clone https://github.com/meshbykartick/local-image-compressor.git
+cd local-image-compressor</code></pre>
+
+      <pre><button class="copy-btn">Copy</button><code>pip install -r requirements.txt</code></pre>
+      <p>or, in your terminal run-</p>
+      <pre><button class="copy-btn">Copy</button><code>pip install flask flask-cors pillow</code></pre>
+
+      <h3>▶️ Run the Server</h3>
+      <pre><button class="copy-btn">Copy</button><code>python server.py</code></pre>
+
+      <p>You’ll see output like:</p>
+      <pre><button class="copy-btn">Copy</button><code>Running on http://127.0.0.1:5000</code></pre>
+      <p>Now, open your browser and visit <u>http://127.0.0.1:5000</u></p>
+      <p>You can now upload an image and then download the compressed file.</p>
+    </div>
+
+    <div class="section">
+      <h2>👨‍💻 Author</h2>
+      <p><strong>Kartick Samanta</strong></p>
+      <p>🔗 GitHub: <a href="https://github.com/meshbykartick" target="_blank">https://github.com/meshbykartick</a></p>
+    </div>
+
+    <footer>© 2025 Local Image Compressor | Built  by Kartick Samanta</footer>
+  </div>
+
+  <script>
+    const buttons = document.querySelectorAll('.copy-btn');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const code = btn.nextElementSibling.innerText;
+        navigator.clipboard.writeText(code).then(() => {
+          btn.textContent = 'Copied!';
+          setTimeout(() => btn.textContent = 'Copy', 2000);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
