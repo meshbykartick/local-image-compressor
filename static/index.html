@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Local Image Compressor</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    text-align: center;
+    padding: 40px;
+  }
+  h1 { color: #333; }
+  form {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    display: inline-block;
+  }
+  input[type="file"] { margin: 10px; }
+  button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  button:hover { background: #0056b3; }
+  #result { margin-top: 20px; }
+</style>
+</head>
+<body>
+
+<h1>📦 Local Image Compressor</h1>
+<div id="server-status">Checking server...</div>
+
+<form id="upload-form">
+  <input type="file" id="image-input" accept="image/*" required>
+  <br>
+  <button type="submit">Compress Image</button>
+</form>
+
+<div id="result"></div>
+
+<script>
+async function checkServer() {
+  const statusDiv = document.getElementById("server-status");
+  try {
+    const res = await fetch("/status");
+    if (res.ok) {
+      const data = await res.json();
+      statusDiv.textContent = "🟢 Server Online";
+      statusDiv.style.color = "green";
+    } else throw new Error();
+  } catch (err) {
+    statusDiv.textContent = "🔴 Server Offline";
+    statusDiv.style.color = "red";
+  }
+}
+checkServer();
+
+const form = document.getElementById("upload-form");
+const resultDiv = document.getElementById("result");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const fileInput = document.getElementById("image-input");
+  const file = fileInput.files[0];
+  if (!file) return alert("Please select an image");
+
+  resultDiv.textContent = "⏳ Compressing...";
+
+  const formData = new FormData();
+  formData.append("image", file);
+
+  try {
+    const res = await fetch("/compress", {
+      method: "POST",
+      body: formData
+    });
+    if (!res.ok) throw new Error("Compression failed");
+    const blob = await res.blob();
+    const url = window.URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "compressed.jpg";
+    a.textContent = "⬇️ Download Compressed Image";
+    resultDiv.innerHTML = "";
+    resultDiv.appendChild(a);
+  } catch (err) {
+    resultDiv.textContent = "❌ " + err.message;
+  }
+});
+</script>
+</body>
+</html>
